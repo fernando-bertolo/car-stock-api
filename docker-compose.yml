@@ -1,0 +1,22 @@
+services:
+  car-stock-api:
+    build: .
+    image: car-stock-api:1.0
+    ports:
+      - "8080:8080"
+    networks:
+      - api-network
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: car_stock
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    driver: bridge
