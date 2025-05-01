@@ -1,12 +1,9 @@
 package br.com.bertolo.carstockapi.users.infrastructure.controllers;
 
-import br.com.bertolo.carstockapi.users.domain.entities.RequestUserDTO;
-import br.com.bertolo.carstockapi.users.domain.entities.ResponseUserDTO;
+import br.com.bertolo.carstockapi.users.application.usecases.CreateUserUseCase;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,8 +12,16 @@ import java.util.UUID;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-    @GetMapping
-    public ResponseEntity<List<ResponseUserDTO>> getUsers() {
-        return ResponseEntity.ok(List.of(new ResponseUserDTO(UUID.randomUUID(), "Fernando", "fernando@gmail.com", 1)));
+    private final CreateUserUseCase createUserUseCase;
+    public UserController(CreateUserUseCase createUserUseCase) {
+        this.createUserUseCase = createUserUseCase;
+    }
+
+    @PostMapping
+    public ResponseEntity<ResponseUserDTO> createUser(
+            @RequestBody @Valid RequestUserDTO userDTO
+    ) {
+        var user = this.createUserUseCase.execute(UserDTOMapper.toDomain(userDTO));
+        return ResponseEntity.ok(UserDTOMapper.toResponseDTO(user));
     }
 }
