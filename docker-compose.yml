@@ -1,21 +1,27 @@
 services:
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3330:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    networks:
+      - api-network
+
   car-stock-api:
     build: .
     image: car-stock-api:1.0
     ports:
       - "8080:8080"
+    restart: always
     networks:
       - api-network
     depends_on:
       - mysql
-
-  mysql:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: car_stock
-    networks:
-      - api-network
 
 networks:
   api-network:
