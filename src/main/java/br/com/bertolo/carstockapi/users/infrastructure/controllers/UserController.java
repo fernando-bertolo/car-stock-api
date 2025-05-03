@@ -17,6 +17,11 @@ public class UserController {
         this.createUserUseCase = createUserUseCase;
     }
 
+    @GetMapping
+    public String getUsers() {
+        return "Users List";
+    }
+
     @PostMapping
     public ResponseEntity<ResponseUserDTO> createUser(
             @RequestBody @Valid RequestUserDTO userDTO
