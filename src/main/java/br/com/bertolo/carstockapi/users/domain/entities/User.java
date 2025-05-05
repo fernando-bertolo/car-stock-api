@@ -2,13 +2,13 @@ package br.com.bertolo.carstockapi.users.domain.entities;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class User {
-    @Getter
     private String nome;
-    @Getter
     private String email;
-    @Getter
     private String senha;
     private int nivel_permissao;
 
