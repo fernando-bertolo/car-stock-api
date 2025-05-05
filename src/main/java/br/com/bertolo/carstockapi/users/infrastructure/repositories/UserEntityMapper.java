@@ -7,7 +7,6 @@ import java.util.UUID;
 public class UserEntityMapper {
     public static UserEntity toEntity(User user) {
         return new UserEntity(
-                UUID.randomUUID(),
                 user.getNome(),
                 user.getEmail(),
                 user.getSenha(),

@@ -1,16 +1,21 @@
 package br.com.bertolo.carstockapi.users.infrastructure.repositories;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false, length = 100)
     private String nome;
@@ -24,13 +29,16 @@ public class UserEntity {
     @Column(nullable = false, length = 100)
     private int nivel_permissao;
 
-    public UserEntity(UUID id, String nome, String email, String senha, int nivel_permissao) {
-        this.id = id;
+
+    protected UserEntity() {}
+
+    public UserEntity(String nome, String email, String senha, int nivel_permissao) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.nivel_permissao = nivel_permissao;
     }
+
 
     public int getNivel_permissao() {
         return nivel_permissao;
@@ -48,7 +56,7 @@ public class UserEntity {
         return nome;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 }
