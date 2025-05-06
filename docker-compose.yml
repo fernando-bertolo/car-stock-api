@@ -9,6 +9,8 @@ services:
       MYSQL_DATABASE: carstock
       MYSQL_USER: bertolo
       MYSQL_PASSWORD: bertolo123
+    volumes:
+      - mysql-data:/var/lib/mysql
     networks:
       - api-network
 
@@ -26,3 +28,7 @@ services:
 networks:
   api-network:
     driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
