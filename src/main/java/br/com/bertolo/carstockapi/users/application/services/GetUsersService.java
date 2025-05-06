@@ -5,10 +5,10 @@ import br.com.bertolo.carstockapi.users.infrastructure.controllers.UserDTOMapper
 import br.com.bertolo.carstockapi.users.infrastructure.repositories.UserEntity;
 import br.com.bertolo.carstockapi.users.infrastructure.repositories.UserEntityMapper;
 import br.com.bertolo.carstockapi.users.infrastructure.repositories.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GetUsersService {
@@ -17,11 +17,8 @@ public class GetUsersService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
-        List<UserEntity> usersEntity = this.userRepository.findAll();
-        return usersEntity.stream()
-                .map(UserEntityMapper::toDomain)
-                .collect(Collectors.toList());
-
+    public Page<User> getAllUsers(Pageable pageable) {
+        Page<UserEntity> usersEntity = this.userRepository.findAll(pageable);
+        return usersEntity.map(UserEntityMapper::toDomain);
     }
 }

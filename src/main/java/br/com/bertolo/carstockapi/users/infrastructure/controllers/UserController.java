@@ -3,8 +3,10 @@ package br.com.bertolo.carstockapi.users.infrastructure.controllers;
 import br.com.bertolo.carstockapi.users.application.services.GetUsersService;
 import br.com.bertolo.carstockapi.users.application.usecases.CreateUserUseCase;
 import br.com.bertolo.carstockapi.users.domain.entities.User;
-import br.com.bertolo.carstockapi.users.infrastructure.repositories.UserEntity;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +25,11 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ResponseUserDTO>> getUsers() {
-        List<User> users = this.getUsersService.getAllUsers();
-        return ResponseEntity.status(200).body(
-                users.stream()
-                        .map(UserDTOMapper::toResponseDTO)
-                        .collect(Collectors.toList())
-        );
+    public ResponseEntity<Page<ResponseUserDTO>> getUsers(
+            @PageableDefault(page = 0, size = 20) Pageable pageable
+    ) {
+        Page<User> users = this.getUsersService.getAllUsers(pageable);
+        return ResponseEntity.status(200).body(users.map(UserDTOMapper::toResponseDTO));
     }
 
     @PostMapping
