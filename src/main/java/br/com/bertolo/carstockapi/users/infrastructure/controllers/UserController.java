@@ -1,5 +1,6 @@
 package br.com.bertolo.carstockapi.users.infrastructure.controllers;
 
+import br.com.bertolo.carstockapi.users.application.services.DeleteUserByIdService;
 import br.com.bertolo.carstockapi.users.application.services.GetUserByIdService;
 import br.com.bertolo.carstockapi.users.application.services.GetUsersService;
 import br.com.bertolo.carstockapi.users.application.usecases.CreateUserUseCase;
@@ -20,14 +21,18 @@ public class UserController {
     private final CreateUserUseCase createUserUseCase;
     private final GetUsersService getUsersService;
     private final GetUserByIdService getUserByIdService;
+    private final DeleteUserByIdService deleteUserByIdService;
+
     public UserController(
             CreateUserUseCase createUserUseCase,
             GetUsersService getUsersService,
-            GetUserByIdService getUserByIdService
+            GetUserByIdService getUserByIdService,
+            DeleteUserByIdService deleteUserByIdService
     ) {
         this.createUserUseCase = createUserUseCase;
         this.getUsersService = getUsersService;
         this.getUserByIdService = getUserByIdService;
+        this.deleteUserByIdService = deleteUserByIdService;
     }
 
     @GetMapping
@@ -52,5 +57,12 @@ public class UserController {
     ) {
         var user = this.createUserUseCase.execute(UserDTOMapper.toDomain(userDTO));
         return ResponseEntity.ok(UserDTOMapper.toResponseDTO(user));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(
+            @PathVariable("id") Long id
+    ) {
+        this.deleteUserByIdService.deleteUserById(id);
     }
 }

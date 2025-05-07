@@ -3,15 +3,25 @@ package br.com.bertolo.carstockapi.users.infrastructure.repositories;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 
-import java.util.UUID;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Getter
+@Setter
+@SQLDelete(sql = "UPDATE users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
+@Where(clause = "deleted_at IS NULL")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +39,17 @@ public class UserEntity {
     @Column(nullable = false, length = 100)
     private int nivel_permissao;
 
+    @Column(name = "deleted_at", columnDefinition = "DATETIME")
+    private LocalDateTime deleted_at;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false, columnDefinition = "DATETIME")
+    private LocalDateTime created_at;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at", columnDefinition = "DATETIME")
+    private LocalDateTime updated_at;
+
 
     protected UserEntity() {}
 
@@ -39,24 +60,7 @@ public class UserEntity {
         this.nivel_permissao = nivel_permissao;
     }
 
-
-    public int getNivel_permissao() {
-        return nivel_permissao;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public Long getId() {
-        return id;
+    public void softDelete() {
+        this.deleted_at = LocalDateTime.now();
     }
 }
