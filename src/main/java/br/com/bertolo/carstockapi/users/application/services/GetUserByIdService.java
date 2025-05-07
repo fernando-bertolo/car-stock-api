@@ -6,9 +6,7 @@ import br.com.bertolo.carstockapi.users.infrastructure.repositories.UserEntityMa
 import br.com.bertolo.carstockapi.users.infrastructure.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class GetUserByIdService {
