@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class GetUserByEmailService {
 
@@ -19,7 +21,8 @@ public class GetUserByEmailService {
         this.userRepository = userRepository;
     }
 
-    public boolean existUserByEmail(String email) {
-        return this.userRepository.existsByEmail(email);
+    public Optional<User> existUserByEmail(String email) {
+        Optional<UserEntity> userEntity = this.userRepository.existsByEmail(email);
+        return userEntity.map(UserEntityMapper::toDomain);
     }
 }

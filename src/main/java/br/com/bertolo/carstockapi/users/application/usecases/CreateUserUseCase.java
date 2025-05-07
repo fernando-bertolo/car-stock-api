@@ -8,6 +8,8 @@ import br.com.bertolo.carstockapi.users.infrastructure.controllers.ResponseUserD
 import br.com.bertolo.carstockapi.users.infrastructure.controllers.UserDTOMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CreateUserUseCase {
 
@@ -20,7 +22,8 @@ public class CreateUserUseCase {
     }
 
     public User execute(User user) {
-        if(this.getUserByEmailService.existUserByEmail(user.getEmail())) {
+        Optional<User> userDomain = this.getUserByEmailService.existUserByEmail(user.getEmail());
+        if(userDomain.isPresent()) {
             throw new UserAlreadyExistsException("O e-mail " + user.getEmail() + " já existe no sistema!");
         }
         return this.createUserService.createUser(user);

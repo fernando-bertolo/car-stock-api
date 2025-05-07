@@ -4,6 +4,7 @@ import br.com.bertolo.carstockapi.users.application.services.DeleteUserByIdServi
 import br.com.bertolo.carstockapi.users.application.services.GetUserByIdService;
 import br.com.bertolo.carstockapi.users.application.services.GetUsersService;
 import br.com.bertolo.carstockapi.users.application.usecases.CreateUserUseCase;
+import br.com.bertolo.carstockapi.users.application.usecases.UpdateUserUseCase;
 import br.com.bertolo.carstockapi.users.domain.entities.User;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -22,17 +23,20 @@ public class UserController {
     private final GetUsersService getUsersService;
     private final GetUserByIdService getUserByIdService;
     private final DeleteUserByIdService deleteUserByIdService;
+    private final UpdateUserUseCase updateUserUseCase;
 
     public UserController(
             CreateUserUseCase createUserUseCase,
             GetUsersService getUsersService,
             GetUserByIdService getUserByIdService,
-            DeleteUserByIdService deleteUserByIdService
+            DeleteUserByIdService deleteUserByIdService,
+            UpdateUserUseCase updateUserUseCase
     ) {
         this.createUserUseCase = createUserUseCase;
         this.getUsersService = getUsersService;
         this.getUserByIdService = getUserByIdService;
         this.deleteUserByIdService = deleteUserByIdService;
+        this.updateUserUseCase = updateUserUseCase;
     }
 
     @GetMapping
@@ -64,5 +68,13 @@ public class UserController {
             @PathVariable("id") Long id
     ) {
         this.deleteUserByIdService.deleteUserById(id);
+    }
+
+    @PutMapping("/{id}")
+    public void updateUser(
+            @PathVariable("id") Long id,
+            @RequestBody @Valid RequestUserDTO userDTO
+    ) {
+        this.updateUserUseCase.execute(id, UserDTOMapper.toDomain(userDTO));
     }
 }
