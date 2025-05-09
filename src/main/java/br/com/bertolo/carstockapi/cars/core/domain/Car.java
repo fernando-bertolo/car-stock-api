@@ -4,14 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-//@AllArgsConstructor
+@AllArgsConstructor
 public class Car {
-    private Long id;
-    private String marca;
-    private String modelo;
-    private String cor;
-    private String ano;
-    private String placa;
-    private String chassi;
-    private String renavam;
+    private String name;
+    private String brand;
+    private String model;
+    private String color;
+    private int year;
+    private String plate;
+    private String status;
+    private double kilometers;
+    private double price;
 }
