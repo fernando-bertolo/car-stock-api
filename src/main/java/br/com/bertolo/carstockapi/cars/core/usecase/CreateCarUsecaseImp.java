@@ -3,7 +3,7 @@ package br.com.bertolo.carstockapi.cars.core.usecase;
 import br.com.bertolo.carstockapi.cars.core.domain.Car;
 import br.com.bertolo.carstockapi.cars.core.gateway.CarGateway;
 
-public class CreateCarUsecaseImp implements CreateCarUsecase{
+public class CreateCarUsecaseImp implements CreateCarUsecase {
 
     private final CarGateway carGateway;
 

@@ -1,5 +1,6 @@
 package br.com.bertolo.carstockapi.cars.adapter.database.jpa;
 
+import br.com.bertolo.carstockapi.cars.adapter.database.jpa.entity.CarEntity;
 import br.com.bertolo.carstockapi.cars.adapter.database.jpa.repository.CarRepository;
 import br.com.bertolo.carstockapi.cars.core.domain.Car;
 import br.com.bertolo.carstockapi.cars.core.gateway.CarGateway;
@@ -17,7 +18,8 @@ public class CarJpaGateway implements CarGateway {
     @Override
     public Long store(Car car) {
         try {
-            return this.carRepository.save();
+            CarEntity carEntity = this.carRepository.save(CarEntityMapper.toEntity(car));
+            return carEntity.getId();
         } catch (Exception e) {
             log.error("Error while storing car", e);
             throw new RuntimeException(e);

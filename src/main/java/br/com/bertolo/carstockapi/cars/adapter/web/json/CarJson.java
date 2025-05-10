@@ -1,5 +1,6 @@
 package br.com.bertolo.carstockapi.cars.adapter.web.json;
 
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,7 +13,7 @@ public record CarJson (
     String model,
     @NotBlank
     String color,
-    @NotBlank
+    @NotNull
     int year,
     @NotNull
     String plate,
@@ -20,6 +21,6 @@ public record CarJson (
     String status,
     @NotNull
     double kilometers,
-    @NotBlank
+    @NotNull
     double price
 ){}

@@ -10,7 +10,6 @@ public class CarController {
         this.createCarUsecase = createCarUsecase;
     }
 
-
     public Long createCar(CreateCarInputDTO car) {
         return this.createCarUsecase.create(CarDTOMapper.toDomain(car));
     }

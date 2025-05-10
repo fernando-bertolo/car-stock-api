@@ -12,25 +12,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 @RequestMapping("/api/v1/cars")
 @RequiredArgsConstructor
-@AllArgsConstructor
 @Slf4j
 public class CarApiController {
 
-    private CarController carController;
+    private final CarController carController;
 
     @PostMapping
     public Long createCar(
         @Valid @RequestBody CarJson carJson
     ) {
-
         log.info("Creating a new car");
-        this.carController.createCar(CarDTOMapper.toDto(carJson));
-        return null;
+        return this.carController.createCar(CarDTOMapper.toDto(carJson));
     }
 }
 
