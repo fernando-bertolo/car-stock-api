@@ -9,7 +9,7 @@ RUN mvn clean install -DskipTests
 
 FROM eclipse-temurin:21-jre-alpine
 
-COPY --from=build /app/target/car-stock-api-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY --from=build /app/target/veiculo-stock-api-0.0.1-SNAPSHOT.jar /app/app.jar
 
 WORKDIR /app
 

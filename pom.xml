@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.bertolo</groupId>
-    <artifactId>car-stock-api</artifactId>
+    <artifactId>veiculo-stock-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>car-stock-api</name>
+    <name>veiculo-stock-api</name>
     <description>API para o gerenciamento de estoque automotivo</description>
     <url/>
     <licenses>
