@@ -5,17 +5,9 @@ import br.com.bertolo.carstockapi.veiculos.core.domain.Veiculo;
 import br.com.bertolo.carstockapi.veiculos.core.dto.CreateVeiculoInputDTO;
 
 public class VeiculoDTOMapper {
-    static Veiculo toDomain(CreateVeiculoInputDTO car) {
+    static Veiculo toDomain(CreateVeiculoInputDTO veiculo) {
         return new Veiculo(
-            car.getName(),
-                car.getBrand(),
-                car.getModel(),
-                car.getColor(),
-                car.getYear(),
-                car.getPlate(),
-                car.getStatus(),
-                car.getKilometers(),
-                car.getPrice()
+                veiculo.
         );
     }
     public static CreateVeiculoInputDTO toDto(VeiculoJson carJson){

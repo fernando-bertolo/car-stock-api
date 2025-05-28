@@ -1,9 +1,11 @@
 package br.com.bertolo.carstockapi.veiculos.adapter.database.jpa.entity;
 
+import br.com.bertolo.carstockapi.funcionarios.adapter.database.jpa.entities.FuncionarioEntity;
 import br.com.bertolo.carstockapi.funcionarios.core.domain.Funcionario;
 import br.com.bertolo.carstockapi.veiculos.core.domain.CambioEnum;
 import br.com.bertolo.carstockapi.veiculos.core.domain.CombustivelEnum;
 import br.com.bertolo.carstockapi.veiculos.core.domain.Versao;
+import br.com.bertolo.carstockapi.vendas.adapter.database.jpa.entities.VendaEntity;
 import br.com.bertolo.carstockapi.vendas.core.domain.Venda;
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,22 +32,30 @@ public class VeiculoEntity {
     private CombustivelEnum combustivel;
 
     @Column(name = "versao_id")
-    private Integer versaoId;
+    private Long versaoId;
 
-    @Column(name = "funcionario_id")
-    private Integer funcionarioId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "funcionario_id")
+    private FuncionarioEntity funcionario;
 
-    @Column(name = "venda_id")
-    private Integer vendaId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "venda_id")
+    private VendaEntity venda;
+
+    @Column(name = "deleted_at", nullable = true)
     private LocalDateTime deletedAt;
+
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     public VeiculoEntity() {
 
     }
 
-    public VeiculoEntity(Long id, String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Integer versaoId, Integer funcionarioId, Integer vendaId, LocalDateTime deletedAt, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public VeiculoEntity(Long id, String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Long versaoId, FuncionarioEntity funcionario, VendaEntity venda, LocalDateTime deletedAt, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.chassi = chassi;
         this.renavam = renavam;
@@ -56,14 +66,14 @@ public class VeiculoEntity {
         this.cambio = cambio;
         this.combustivel = combustivel;
         this.versaoId = versaoId;
-        this.funcionarioId = funcionarioId;
-        this.vendaId = vendaId;
+        this.funcionario = funcionario;
+        this.venda = venda;
         this.deletedAt = deletedAt;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-    public VeiculoEntity(String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Integer versaoId, Integer funcionarioId, Integer vendaId, LocalDateTime deletedAt, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public VeiculoEntity(String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Long versaoId, FuncionarioEntity funcionario, VendaEntity venda, LocalDateTime deletedAt, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.chassi = chassi;
         this.renavam = renavam;
         this.placa = placa;
@@ -73,8 +83,8 @@ public class VeiculoEntity {
         this.cambio = cambio;
         this.combustivel = combustivel;
         this.versaoId = versaoId;
-        this.funcionarioId = funcionarioId;
-        this.vendaId = vendaId;
+        this.funcionario = funcionario;
+        this.venda = venda;
         this.deletedAt = deletedAt;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;

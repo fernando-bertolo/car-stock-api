@@ -1,19 +1,29 @@
 package br.com.bertolo.carstockapi.veiculos.adapter.database.jpa;
 
+import br.com.bertolo.carstockapi.funcionarios.adapter.database.jpa.entities.FuncionarioEntity;
 import br.com.bertolo.carstockapi.veiculos.adapter.database.jpa.entity.VeiculoEntity;
 import br.com.bertolo.carstockapi.veiculos.core.domain.Veiculo;
+import br.com.bertolo.carstockapi.vendas.adapter.database.jpa.entities.VendaEntity;
 
 public class VeiculoEntityMapper {
     public static VeiculoEntity toEntity(Veiculo veiculo) {
         return new VeiculoEntity(
-                veiculo.getName(),
-                veiculo.getBrand(),
-                veiculo.getModel(),
-                veiculo.getColor(),
-                veiculo.getYear(),
-                veiculo.getPlate(),
-                veiculo.getStatus(),
-                veiculo.getKilometers()
+                veiculo.getId(),
+                veiculo.getChassi(),
+                veiculo.getRenavam(),
+                veiculo.getPlaca(),
+                veiculo.getCor(),
+                veiculo.getAnoFabricacao(),
+                veiculo.getAnoModelo(),
+                veiculo.getCambio(),
+                veiculo.getCombustivel(),
+                veiculo.getVersao().getId(),
+                new FuncionarioEntity(),
+                new VendaEntity(),
+                veiculo.getDeletedAt(),
+                veiculo.getCreatedAt(),
+                veiculo.getUpdatedAtt()
+
         );
     }
 

@@ -19,15 +19,15 @@ public class Veiculo {
     private CombustivelEnum combustivel;
     private Versao versao;
     private Funcionario funcionario;
-    private Optional<Venda> venda;
-    private Optional<LocalDateTime> deletedAt;
+    private Venda venda;
+    private LocalDateTime deletedAt;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
 
     public Veiculo() {}
 
-    public Veiculo(Long id, String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Versao versao, Funcionario funcionario, Optional<Venda> venda, Optional<LocalDateTime> deleted_at, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Veiculo(Long id, String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Versao versao, Funcionario funcionario, Venda venda, LocalDateTime deleted_at, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id = id;
         this.chassi = chassi;
         this.renavam = renavam;
@@ -45,7 +45,7 @@ public class Veiculo {
         this.updatedAt = updated_at;
     }
 
-    public Veiculo(String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Versao versao, Funcionario funcionario, Optional<Venda> venda, Optional<LocalDateTime> deleted_at, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Veiculo(String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Versao versao, Funcionario funcionario, Venda venda, LocalDateTime deleted_at, LocalDateTime created_at, LocalDateTime updated_at) {
         this.chassi = chassi;
         this.renavam = renavam;
         this.placa = placa;
@@ -106,11 +106,11 @@ public class Veiculo {
         return funcionario;
     }
 
-    public Optional<Venda> getVenda() {
+    public Venda getVenda() {
         return venda;
     }
 
-    public Optional<LocalDateTime> getDeletedAt() {
+    public LocalDateTime getDeletedAt() {
         return deletedAt;
     }
 
