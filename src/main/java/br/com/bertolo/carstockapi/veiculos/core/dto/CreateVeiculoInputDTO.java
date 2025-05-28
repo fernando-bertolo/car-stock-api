@@ -1,61 +1,65 @@
 package br.com.bertolo.carstockapi.veiculos.core.dto;
 
+import br.com.bertolo.carstockapi.funcionarios.core.domain.Funcionario;
+import br.com.bertolo.carstockapi.veiculos.core.domain.CambioEnum;
+import br.com.bertolo.carstockapi.veiculos.core.domain.CombustivelEnum;
+import br.com.bertolo.carstockapi.veiculos.core.domain.Versao;
+import br.com.bertolo.carstockapi.vendas.core.domain.Venda;
+
 public class CreateVeiculoInputDTO {
-    private String name;
-    private String brand;
-    private String model;
-    private String color;
-    private int year;
-    private String plate;
-    private String status;
-    private double kilometers;
-    private double price;
+    private String chassi;
+    private String renavam;
+    private String placa;
+    private String cor;
+    private Integer anoFabricacao;
+    private Integer anoModelo;
+    private CambioEnum cambio;
+    private CombustivelEnum combustivel;
+//    private Versao versao;
+//    private Funcionario funcionario;
+//    private Venda venda;
 
-    public CreateVeiculoInputDTO(String name, String brand, String model, String color, int year, String plate, String status, double kilometers, double price) {
-        this.name = name;
-        this.brand = brand;
-        this.model = model;
-        this.color = color;
-        this.year = year;
-        this.plate = plate;
-        this.status = status;
-        this.kilometers = kilometers;
-        this.price = price;
+
+    public CreateVeiculoInputDTO(String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel) {
+        this.chassi = chassi;
+        this.renavam = renavam;
+        this.placa = placa;
+        this.cor = cor;
+        this.anoFabricacao = anoFabricacao;
+        this.anoModelo = anoModelo;
+        this.cambio = cambio;
+        this.combustivel = combustivel;
     }
 
-    public String getName() {
-        return name;
+    public String getChassi() {
+        return chassi;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getRenavam() {
+        return renavam;
     }
 
-    public String getModel() {
-        return model;
+    public String getPlaca() {
+        return placa;
     }
 
-    public String getColor() {
-        return color;
+    public String getCor() {
+        return cor;
     }
 
-    public int getYear() {
-        return year;
+    public Integer getAnoFabricacao() {
+        return anoFabricacao;
     }
 
-    public String getPlate() {
-        return plate;
+    public Integer getAnoModelo() {
+        return anoModelo;
     }
 
-    public String getStatus() {
-        return status;
+    public CambioEnum getCambio() {
+        return cambio;
     }
 
-    public double getKilometers() {
-        return kilometers;
-    }
-
-    public double getPrice() {
-        return price;
+    public CombustivelEnum getCombustivel() {
+        return combustivel;
     }
 }
