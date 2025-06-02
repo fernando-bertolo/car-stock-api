@@ -1,16 +1,43 @@
 services:
 
-  mysql:
-    image: mysql:8.0
-    ports:
-      - "3306:3306"
+#  mysql:
+#    image: mysql:8.0
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root123
+#      MYSQL_DATABASE: carstock
+#      MYSQL_USER: bertolo
+#      MYSQL_PASSWORD: bertolo123
+#    volumes:
+#      - mysql-data:/var/lib/mysql
+#    networks:
+#      - api-network
+
+
+  postgresql:
+    image: postgres:14-alpine
     environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: carstock
-      MYSQL_USER: bertolo
-      MYSQL_PASSWORD: bertolo123
+      POSTGRES_DB: carstock
+      POSTGRES_PASSWORD: bertolo123
+    ports:
+      - 5433:5432
     volumes:
-      - mysql-data:/var/lib/mysql
+      - database-data:/var/lib/postgresql/data
+    networks:
+      - api-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: bertolo.dev@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: bertolo123
+    ports:
+      - 5050:80
+    volumes:
+      - ./.data/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgresql
     networks:
       - api-network
 
@@ -23,12 +50,12 @@ services:
     networks:
       - api-network
     depends_on:
-      - mysql
+      - postgresql
 
 networks:
   api-network:
     driver: bridge
 
 volumes:
-  mysql-data:
+  database-data:
     driver: local
