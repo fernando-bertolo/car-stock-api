@@ -1,9 +1,9 @@
-package br.com.bertolo.carstockapi.veiculos.adapter.database.jpa;
+package br.com.bertolo.carstockapi.veiculos.adapter.outbound.database.jpa;
 
-import br.com.bertolo.carstockapi.veiculos.adapter.database.jpa.entity.VeiculoEntity;
-import br.com.bertolo.carstockapi.veiculos.adapter.database.jpa.repository.CarRepository;
+import br.com.bertolo.carstockapi.veiculos.adapter.outbound.database.jpa.entity.VeiculoEntity;
+import br.com.bertolo.carstockapi.veiculos.adapter.outbound.database.jpa.repository.CarRepository;
 import br.com.bertolo.carstockapi.veiculos.core.domain.Veiculo;
-import br.com.bertolo.carstockapi.veiculos.core.gateway.VeiculoGateway;
+import br.com.bertolo.carstockapi.veiculos.core.ports.VeiculoGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

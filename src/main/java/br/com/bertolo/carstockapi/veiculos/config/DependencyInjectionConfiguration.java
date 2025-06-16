@@ -1,9 +1,7 @@
 package br.com.bertolo.carstockapi.veiculos.config;
 
-import br.com.bertolo.carstockapi.veiculos.core.controller.VeiculoController;
-import br.com.bertolo.carstockapi.veiculos.core.gateway.VeiculoGateway;
+import br.com.bertolo.carstockapi.veiculos.core.ports.VeiculoGateway;
 import br.com.bertolo.carstockapi.veiculos.core.usecase.CreateVeiculoUsecase;
-import br.com.bertolo.carstockapi.veiculos.core.usecase.CreateVeiculoUsecaseImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +14,7 @@ public class DependencyInjectionConfiguration {
 
     @Bean
     public CreateVeiculoUsecase createCarUsecase() {
-        return new CreateVeiculoUsecaseImp(veiculoGateway);
+        return new CreateVeiculoUsecase(veiculoGateway);
     }
 
     @Bean

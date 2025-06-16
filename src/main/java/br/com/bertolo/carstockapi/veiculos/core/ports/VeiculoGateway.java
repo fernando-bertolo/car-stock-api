@@ -1,4 +1,4 @@
-package br.com.bertolo.carstockapi.veiculos.core.gateway;
+package br.com.bertolo.carstockapi.veiculos.core.ports;
 
 import br.com.bertolo.carstockapi.veiculos.core.domain.Veiculo;
 

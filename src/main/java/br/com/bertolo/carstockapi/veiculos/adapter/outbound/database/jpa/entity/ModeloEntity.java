@@ -1,4 +1,4 @@
-package br.com.bertolo.carstockapi.veiculos.adapter.database.jpa.entity;
+package br.com.bertolo.carstockapi.veiculos.adapter.outbound.database.jpa.entity;
 
 import jakarta.persistence.*;
 

@@ -1,26 +1,24 @@
-package br.com.bertolo.carstockapi.veiculos.adapter.database.jpa.entity;
+package br.com.bertolo.carstockapi.veiculos.adapter.outbound.database.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "marcas")
+@Table(name = "versoes")
 @Getter
 @Setter
-public class MarcaEntity {
+public class VersaoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "modelo_id")
+    private ModeloEntity modelo;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-
-    @OneToMany(mappedBy = "marca", fetch = FetchType.LAZY)
-    private List<ModeloEntity> modelos = new ArrayList<>();
 }

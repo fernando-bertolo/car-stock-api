@@ -1,4 +1,4 @@
-package br.com.bertolo.carstockapi.veiculos.adapter.database.jpa.entity;
+package br.com.bertolo.carstockapi.veiculos.adapter.outbound.database.jpa.entity;
 
 import br.com.bertolo.carstockapi.funcionarios.adapter.database.jpa.entities.FuncionarioEntity;
 import br.com.bertolo.carstockapi.funcionarios.core.domain.Funcionario;

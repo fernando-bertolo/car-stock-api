@@ -1,7 +1,6 @@
 package br.com.bertolo.carstockapi.funcionarios.adapter.database.jpa.entities;
 
-import br.com.bertolo.carstockapi.veiculos.adapter.database.jpa.entity.VeiculoEntity;
-import br.com.bertolo.carstockapi.veiculos.adapter.database.jpa.entity.VersaoEntity;
+import br.com.bertolo.carstockapi.veiculos.adapter.outbound.database.jpa.entity.VeiculoEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package br.com.bertolo.carstockapi.veiculos.adapter.web.json;
+package br.com.bertolo.carstockapi.veiculos.adapter.inbound.dtos;
 
 
 import br.com.bertolo.carstockapi.veiculos.core.domain.CambioEnum;
@@ -6,7 +6,7 @@ import br.com.bertolo.carstockapi.veiculos.core.domain.CombustivelEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record VeiculoJson(
+public record VeiculoDTO(
     String chassi,
     String renavam,
     String placa,

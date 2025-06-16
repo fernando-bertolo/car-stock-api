@@ -1,8 +1,7 @@
-package br.com.bertolo.carstockapi.veiculos.adapter.web;
+package br.com.bertolo.carstockapi.veiculos.adapter.inbound;
 
-import br.com.bertolo.carstockapi.veiculos.adapter.web.json.VeiculoJson;
-import br.com.bertolo.carstockapi.veiculos.core.controller.VeiculoController;
-import br.com.bertolo.carstockapi.veiculos.core.controller.VeiculoDTOMapper;
+import br.com.bertolo.carstockapi.veiculos.adapter.inbound.dtos.VeiculoDTO;
+import br.com.bertolo.carstockapi.veiculos.core.usecase.CreateVeiculoUsecase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/cars")
 @RequiredArgsConstructor
 @Slf4j
-public class VeiculoApiController {
+public class VeiculoController {
 
-    private final VeiculoController veiculoController;
+    private final CreateVeiculoUsecase createVeiculoUsecase;
 
     @PostMapping
     public Long createCar(
-        @Valid @RequestBody VeiculoJson carJson
+        @Valid @RequestBody VeiculoDTO veiculoDTO
     ) {
         log.info("Creating a new car");
-        return this.veiculoController.createCar(VeiculoDTOMapper.toDto(carJson));
+        return this.createVeiculoUsecase.execute(veiculoDTO);
     }
 }
 
