@@ -17,17 +17,35 @@ public class Veiculo {
     private Integer anoModelo;
     private CambioEnum cambio;
     private CombustivelEnum combustivel;
-    private Versao versao;
+    private double quilometragem;
+    private double price;
+
+    private Long funcionarioId;
+    private Long vendaId;
+    private Long versaoId;
+
     private Funcionario funcionario;
     private Venda venda;
-    private LocalDateTime deletedAt;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
+    private Versao versao;
 
     public Veiculo() {}
 
-    public Veiculo(Long id, String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Versao versao, Funcionario funcionario, Venda venda, LocalDateTime deleted_at, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Veiculo(
+            Long id,
+            String chassi,
+            String renavam,
+            String placa,
+            String cor,
+            Integer anoFabricacao,
+            Integer anoModelo,
+            CambioEnum cambio,
+            CombustivelEnum combustivel,
+            double quilometragem,
+            double price,
+            Long funcionarioId,
+            Long vendaId,
+            Long versaoId
+    ) {
         this.id = id;
         this.chassi = chassi;
         this.renavam = renavam;
@@ -37,15 +55,28 @@ public class Veiculo {
         this.anoModelo = anoModelo;
         this.cambio = cambio;
         this.combustivel = combustivel;
-        this.versao = versao;
-        this.funcionario = funcionario;
-        this.venda = venda;
-        this.deletedAt = deleted_at;
-        this.createdAt = created_at;
-        this.updatedAt = updated_at;
+        this.quilometragem = quilometragem;
+        this.price = price;
+        this.funcionarioId = funcionarioId;
+        this.vendaId = vendaId;
+        this.versaoId = versaoId;
     }
 
-    public Veiculo(String chassi, String renavam, String placa, String cor, Integer anoFabricacao, Integer anoModelo, CambioEnum cambio, CombustivelEnum combustivel, Versao versao, Funcionario funcionario, Venda venda, LocalDateTime deleted_at, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Veiculo(
+            String chassi,
+            String renavam,
+            String placa,
+            String cor,
+            Integer anoFabricacao,
+            Integer anoModelo,
+            CambioEnum cambio,
+            CombustivelEnum combustivel,
+            double quilometragem,
+            double price,
+            Versao versao,
+            Funcionario funcionario,
+            Venda venda
+    ) {
         this.chassi = chassi;
         this.renavam = renavam;
         this.placa = placa;
@@ -54,13 +85,13 @@ public class Veiculo {
         this.anoModelo = anoModelo;
         this.cambio = cambio;
         this.combustivel = combustivel;
+        this.quilometragem = quilometragem;
+        this.price = price;
         this.versao = versao;
         this.funcionario = funcionario;
         this.venda = venda;
-        this.deletedAt = deleted_at;
-        this.createdAt = created_at;
-        this.updatedAt = updated_at;
     }
+
 
     public Long getId() {
         return id;
@@ -98,6 +129,14 @@ public class Veiculo {
         return combustivel;
     }
 
+    public double getQuilometragem() {
+        return quilometragem;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
     public Versao getVersao() {
         return versao;
     }
@@ -110,15 +149,16 @@ public class Veiculo {
         return venda;
     }
 
-    public LocalDateTime getDeletedAt() {
-        return deletedAt;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+        this.funcionarioId = funcionario != null ? funcionario.getId() : null;
     }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+        this.vendaId = venda != null ? venda.getId() : null;
     }
-
-    public LocalDateTime getUpdatedAtt() {
-        return updatedAt;
+    public void setVersao(Versao versao) {
+        this.versao = versao;
+        this.versaoId = versao != null ? versao.getId() : null;
     }
 }

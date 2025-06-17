@@ -31,16 +31,28 @@ public class VeiculoEntity {
     private CambioEnum cambio;
     private CombustivelEnum combustivel;
 
+
     @Column(name = "versao_id")
     private Long versaoId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "funcionario_id")
+    private Long funcionarioId;
+
+    @JoinColumn(name = "venda_id")
+    private Long vendaId;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "funcionario_id", insertable = false, updatable = false)
     private FuncionarioEntity funcionario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "venda_id")
+    @JoinColumn(name = "venda_id", insertable = false, updatable = false)
     private VendaEntity venda;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "versao_id", insertable = false, updatable = false)
+    private VersaoEntity versao;
 
     @Column(name = "deleted_at", nullable = true)
     private LocalDateTime deletedAt;

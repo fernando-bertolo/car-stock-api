@@ -4,6 +4,7 @@ import br.com.bertolo.carstockapi.funcionarios.adapter.database.jpa.entities.Fun
 import br.com.bertolo.carstockapi.veiculos.adapter.outbound.database.jpa.entity.VeiculoEntity;
 import br.com.bertolo.carstockapi.veiculos.core.domain.Veiculo;
 import br.com.bertolo.carstockapi.vendas.adapter.database.jpa.entities.VendaEntity;
+import br.com.bertolo.carstockapi.vendas.core.domain.Venda;
 
 public class VeiculoEntityMapper {
     public static VeiculoEntity toEntity(Veiculo veiculo) {
@@ -27,8 +28,8 @@ public class VeiculoEntityMapper {
         );
     }
 
-    public static Veiculo toDomain(VeiculoEntity veiculoEntity) {
-        return new Veiculo(
+//    public static Veiculo toDomain(VeiculoEntity veiculoEntity) {
+//        return new Veiculo(
 //                veiculoEntity.getId(),
 //                veiculoEntity.getChassi(),
 //                veiculoEntity.getRenavam(),
@@ -38,7 +39,9 @@ public class VeiculoEntityMapper {
 //                veiculoEntity.getAnoModelo(),
 //                veiculoEntity.getCambio(),
 //                veiculoEntity.getCombustivel(),
-//                veiculoEntity.getVersaoId(),
-        );
-    }
+//                veiculoEntity.getVersao(),
+//                veiculoEntity.getFuncionario(),
+//
+//        );
+//    }
 }
