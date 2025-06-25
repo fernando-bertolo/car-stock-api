@@ -8,6 +8,7 @@ import br.com.bertolo.carstockapi.users.core.ports.UserGateway;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UserGatewayAdapter implements UserGateway {
@@ -26,8 +27,10 @@ public class UserGatewayAdapter implements UserGateway {
 
     @Override
     public List<User> getAllUsers() {
-        List<UserEntity> userEntity = this.userRepository.findAll();
-
-//        return userEntity.stream().map(user -> User.createFromDb(user.getId(), user.getName(), user.getEmail(), user.getPassword()));
+        return this.userRepository
+                .findAll()
+                .stream()
+                .map(user -> User.createFromDb(user.getId(), user.getName(), user.getEmail(), user.getPassword()))
+                .collect(Collectors.toList());
     }
 }
