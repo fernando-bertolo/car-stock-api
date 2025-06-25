@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 public class UserEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,15 +29,19 @@ public class UserEntity {
     private String password;
 
     @CreationTimestamp
-    @Column(name = "created_at", updatable = false, columnDefinition = "DATETIME")
-    private LocalDateTime created_at;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(name = "updated_at", columnDefinition = "DATETIME")
-    private LocalDateTime updated_at;
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
 
     public UserEntity() {}
 
-    public UserEntity(String name, String email, String password) {}
+    public UserEntity(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
 }

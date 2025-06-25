@@ -3,9 +3,10 @@ package br.com.bertolo.carstockapi.users.core.usecases;
 import br.com.bertolo.carstockapi.shared.interfaces.UseCase;
 import br.com.bertolo.carstockapi.users.adapters.inbound.dtos.CreateUserDTO;
 import br.com.bertolo.carstockapi.users.adapters.inbound.mappers.UserDTOMapper;
+import br.com.bertolo.carstockapi.users.core.domain.User;
 import br.com.bertolo.carstockapi.users.core.ports.UserGateway;
 
-public class CreateUserUseCase implements UseCase<CreateUserDTO, Long> {
+public class CreateUserUseCase implements UseCase<User, Long> {
 
     private final UserGateway userGateway;
 
@@ -14,7 +15,7 @@ public class CreateUserUseCase implements UseCase<CreateUserDTO, Long> {
     }
 
     @Override
-    public Long execute(CreateUserDTO params) {
-        return this.userGateway.createUser(UserDTOMapper.toDomain(params));
+    public Long execute(User user) {
+        return this.userGateway.createUser(user);
     }
 }
