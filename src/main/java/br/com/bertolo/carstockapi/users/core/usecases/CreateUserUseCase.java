@@ -6,7 +6,7 @@ import br.com.bertolo.carstockapi.users.adapters.inbound.mappers.UserDTOMapper;
 import br.com.bertolo.carstockapi.users.core.domain.User;
 import br.com.bertolo.carstockapi.users.core.ports.UserGateway;
 
-public class CreateUserUseCase implements UseCase<User, Long> {
+public class CreateUserUseCase implements UseCase<User, User> {
 
     private final UserGateway userGateway;
 
@@ -15,7 +15,7 @@ public class CreateUserUseCase implements UseCase<User, Long> {
     }
 
     @Override
-    public Long execute(User user) {
+    public User execute(User user) {
         return this.userGateway.createUser(user);
     }
 }

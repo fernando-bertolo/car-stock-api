@@ -6,6 +6,7 @@ import br.com.bertolo.carstockapi.users.core.domain.User;
 public class UserDTOMapper {
     public static User toDomain(CreateUserDTO user) {
         return new User(
+                null,
                 user.name(),
                 user.email(),
                 user.password()

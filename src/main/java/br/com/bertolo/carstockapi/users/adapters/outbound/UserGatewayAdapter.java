@@ -17,8 +17,8 @@ public class UserGatewayAdapter implements UserGateway {
     }
 
     @Override
-    public Long createUser(User user) {
-        UserEntity userId = this.userRepository.save(UserEntityMapper.toEntity(user));
-        return userId.getId();
+    public User createUser(User user) {
+        UserEntity userEntity = this.userRepository.save(UserEntityMapper.toEntity(user));
+        return User.createFromDb(userEntity.getId(), userEntity.getName(), userEntity.getEmail(), userEntity.getPassword());
     }
 }
