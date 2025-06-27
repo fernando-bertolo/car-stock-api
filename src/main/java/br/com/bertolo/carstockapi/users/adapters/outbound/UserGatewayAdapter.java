@@ -8,6 +8,7 @@ import br.com.bertolo.carstockapi.users.core.ports.UserGateway;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -32,5 +33,35 @@ public class UserGatewayAdapter implements UserGateway {
                 .stream()
                 .map(user -> User.createFromDb(user.getId(), user.getName(), user.getEmail(), user.getPassword()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return this.userRepository
+                .findByEmail(email)
+                .map(userEntity -> User.createFromDb(
+                        userEntity.getId(),
+                        userEntity.getName(),
+                        userEntity.getEmail(),
+                        userEntity.getPassword()
+                ));
+    }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return this.userRepository
+                .findById(id)
+                .map(userEntity -> User.createFromDb(
+                        userEntity.getId(),
+                        userEntity.getName(),
+                        userEntity.getEmail(),
+                        userEntity.getPassword()
+                ));
+    }
+
+    @Override
+    public Void deleteById(Long id) {
+        this.userRepository.deleteById(id);
+        return null;
     }
 }
